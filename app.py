@@ -4,10 +4,10 @@ import matplotlib.pyplot as plt
 import pandas_datareader as data
 from keras.models import load_model
 import streamlit as st
-from PIL import Image
+#from PIL import Image
 
-img = Image.open('icon2.png')
-st.set_page_config(page_title='Stock Price Prediction App', page_icon='img')
+#img = Image.open('icon2.png')
+#st.set_page_config(page_title='Stock Price Prediction App', page_icon='img')
 
 
 start = '2011-01-01'
