@@ -4,11 +4,6 @@ import matplotlib.pyplot as plt
 import pandas_datareader as data
 from keras.models import load_model
 import streamlit as st
-#from PIL import Image
-
-#img = Image.open('icon2.png')
-#st.set_page_config(page_title='Stock Price Prediction App', page_icon='img')
-
 
 start = '2011-01-01'
 end = '2021-12-31'
@@ -17,9 +12,6 @@ user_input  = st.text_input('Enter Stock Ticker', 'AAPL')
 
 df = data.DataReader(user_input , 'yahoo', start, end)
 df.head()
-
-
-
 
 #Describing The Data
 
@@ -47,12 +39,10 @@ plt.plot(ma100)
 plt.plot(ma200)
 plt.plot(df.Close)
 st.pyplot(fig)
-
-
-
-data_training = pd.DataFrame(df['Close'][0:(int)(len(df)*0.70)])   # 70% data in training dataset 
-
-data_testing = pd.DataFrame(df['Close'][(int)(len(df)*0.70):(int)(len(df))]) # 30% data in testing dataset
+ # 70% data in training dataset 
+data_training = pd.DataFrame(df['Close'][0:(int)(len(df)*0.70)])  
+# 30% data in testing dataset
+data_testing = pd.DataFrame(df['Close'][(int)(len(df)*0.70):(int)(len(df))]) 
 
 #Train the modell
 from sklearn.preprocessing import MinMaxScaler
