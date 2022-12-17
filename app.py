@@ -10,11 +10,10 @@ end = '2021-12-31'
 st.title('Stock Price Prediction')
 user_input  = st.text_input('Enter Stock Ticker', 'AAPL')
 
-df = data.DataReader(user_input , 'yahoo', start, end)
+df = data.DataReader(user_input, 'yahoo', start, end)
 df.head()
 
 #Describing The Data
-
 st.subheader('Data From 2011 - 2021')
 st.write(df.describe())
 
@@ -54,9 +53,7 @@ data_training_array = scaler.fit_transform(data_training)
 model = load_model('keras_model.h5')
 
 #Testing Part
-
 past100_days = data_training.tail(100)
-
 final_df = past100_days.append(data_testing, ignore_index=True)
 input_data = scaler.fit_transform(final_df)
 
@@ -68,18 +65,14 @@ for i in range(100, input_data.shape[0]):
   y_test.append(input_data[i, 0])
 
 x_test, y_test = np.array(x_test), np.array(y_test)
-
 y_predicted = model.predict(x_test)
 
 scaler = scaler.scale_
-
 scale_factor = 1/scaler[0]
 y_predicted = y_predicted * scale_factor
 y_test = y_test * scale_factor
 
-
 #Final Data Visualisation
-
 st.subheader('Predicted Price Vs Actual Price Graph')
 fig2 = plt.figure(figsize = (12, 6))
 plt.plot(y_test, 'g', label = 'Actual Price')
